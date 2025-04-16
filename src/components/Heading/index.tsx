@@ -1,4 +1,4 @@
-import StyleSheet from './Heading.module.css'
+import StyleSheet from './styles.module.css'
 
 type Props = {
     children: React.ReactNode
