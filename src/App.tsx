@@ -6,6 +6,7 @@ import { DefaultInput } from './components/DefaultInput';
 
 import './style/Theme.css';
 import './style/Global.css';
+import { Cycles } from './components/Cycles';
 
 export function App() {
     return (
@@ -25,7 +26,11 @@ export function App() {
             <Container>
                 <form className="form" action="">
                     <div className="formBox">
-                        <DefaultInput id="meuInput" type="text" labelText='Task'/>
+                        <DefaultInput
+                            id="meuInput"
+                            type="text"
+                            labelText="Task"
+                        />
                     </div>
 
                     <div className="formBox">
@@ -33,7 +38,7 @@ export function App() {
                     </div>
 
                     <div className="formBox">
-
+                        <Cycles />
                     </div>
 
                     <div className="formBox">
