@@ -2,13 +2,14 @@ import React from 'react';
 
 type Props = {
     id: string;
+    labelText?: string;
 } & React.ComponentProps<'input'>;
 
-export function DefaultInput({ id, type }: Props) {
+export function DefaultInput({ id, type, labelText, ...rest }: Props) {
     return (
         <>
-            <label htmlFor={id}>task</label>
-            <input type={type} id={id} placeholder="new task" />
+            {labelText && <label htmlFor={id}>{labelText}</label>}
+            <input type={type} id={id} placeholder="new task" {...rest} />
         </>
     );
 }
