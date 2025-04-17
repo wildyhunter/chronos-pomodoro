@@ -33,8 +33,7 @@ export function App() {
                     </div>
 
                     <div className="formBox">
-                        <p>Ciclos</p>
-                        <p>0 0 0 0 0</p>
+
                     </div>
 
                     <div className="formBox">
