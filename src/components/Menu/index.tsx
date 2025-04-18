@@ -1,29 +1,42 @@
 import {
     HistoryIcon,
     HouseIcon,
-    NotepadText,
+    MoonIcon,
     SettingsIcon,
     SunIcon,
-    TimerIcon,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import styles from './styles.module.css';
 
 type AvailableThemes = 'dark' | 'light';
 
 export function Menu() {
-    const [theme, setTheme] = useState<AvailableThemes>('dark');
+    const [theme, setTheme] = useState<AvailableThemes>(() => {
+        const storageTheme = localStorage.getItem('theme') as AvailableThemes;
+        return storageTheme ?? 'dark';
+    });
 
-    function handleToggleTheme(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+    const nextThemeIcon = {
+        light: <MoonIcon />,
+        dark: <SunIcon />,
+    };
+
+    function handleToggleTheme(
+        e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+    ) {
         e.preventDefault();
-        setTheme(prevTheme => {
+        setTheme((prevTheme) => {
             const nextTheme = prevTheme === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', nextTheme);
             return nextTheme;
         });
-        
     }
+
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }, [theme]);
 
     return (
         <nav className={styles.menu}>
@@ -58,7 +71,7 @@ export function Menu() {
                 title="Modo noturno"
                 onClick={(e) => handleToggleTheme(e)}
             >
-                <SunIcon />
+                {nextThemeIcon[theme]}
             </a>
         </nav>
     );
