@@ -1,6 +1,7 @@
 import {
     HistoryIcon,
     HouseIcon,
+    NotepadText,
     SettingsIcon,
     SunIcon,
     TimerIcon,
@@ -16,7 +17,12 @@ export function Menu() {
 
     function handleToggleTheme(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
         e.preventDefault();
-        setTheme(theme === 'dark' ? 'light' : 'dark');
+        setTheme(prevTheme => {
+            const nextTheme = prevTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', nextTheme);
+            return nextTheme;
+        });
+        
     }
 
     return (
