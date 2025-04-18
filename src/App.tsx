@@ -6,7 +6,7 @@ import './style/Global.css';
 export function App() {
     return (
         <>
-        <Home />
+            <Home />
         </>
     );
 }
