@@ -7,6 +7,8 @@ import { DefaultInput } from './components/DefaultInput';
 import './style/Theme.css';
 import './style/Global.css';
 import { Cycles } from './components/Cycles';
+import { DefaultButton } from './components/DefaultButton';
+import { PlayCircleIcon } from 'lucide-react';
 
 export function App() {
     return (
@@ -42,7 +44,7 @@ export function App() {
                     </div>
 
                     <div className="formBox">
-                        <button>Enviar</button>
+                        <DefaultButton icon={<PlayCircleIcon />}/>
                     </div>
                 </form>
             </Container>
