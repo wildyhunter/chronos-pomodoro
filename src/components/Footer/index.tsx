@@ -1,8 +1,6 @@
 import styles from './styles.module.css';
 
-type Props = {};
-
-export function Footer(props: Props) {
+export function Footer() {
   return (
     <footer className={styles.footer}>
       <a href="">Entenda como funciona a técnica pomodoro</a>
