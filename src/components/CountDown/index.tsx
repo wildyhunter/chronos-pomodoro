@@ -1,11 +1,11 @@
+import { useTaskContext } from '../context/TaskContext';
+
 import styles from './styles.module.css'
 
-type ContainerProps = {
-    formattedSecondsRemaining: string
-}
+export function CountDown() {
+    const taskContext = useTaskContext();
 
-export function CountDown({formattedSecondsRemaining}: ContainerProps) {
     return(
-            <div className={styles.container}>{formattedSecondsRemaining}</div>
+            <div className={styles.container}>00:00</div>
     )
 }

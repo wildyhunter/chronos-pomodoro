@@ -13,7 +13,7 @@ export function MainForm() {
             </div>
 
             <div className={styles.formBox}>
-                <p>Lorem ipsum dolor sit amet.</p>
+                <p>Próximo intervalo é de 25</p>
             </div>
 
             <div className={styles.formBox}>
