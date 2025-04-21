@@ -6,18 +6,18 @@ import { TaskStateModel } from '../../models/TaskStateModel';
 
 import styles from './styles.module.css';
 
-type Props = {
+type HomeProps = {
     state: TaskStateModel
     setState: React.Dispatch<React.SetStateAction<TaskStateModel>>
 };
 
 
-export function Home(props: Props) {
+export function Home(props: HomeProps) {
     
     return (
         <MainTemplate>
             <Container>
-                <CountDown />
+                <CountDown formattedSecondsRemaining={props.state.formattedSecondsRemaining}/>
             </Container>
             <Container>
                 <MainForm />

@@ -1,10 +1,10 @@
 import styles from './styles.module.css';
 
-type Props = {
+type GenericHtmlProps = {
   children: React.ReactNode
 };
 
-export function GenericHtml({children}: Props) {
+export function GenericHtml({children}: GenericHtmlProps) {
   return (
     <div className={styles.genericHtml}>
       {children}

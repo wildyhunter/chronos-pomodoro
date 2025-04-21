@@ -3,10 +3,10 @@ import { Footer } from '../../Footer';
 import { Logo } from '../../Logo';
 import { Menu } from '../../Menu';
 
-type Props = {
+type MianTemplateProps = {
   children: React.ReactNode
 }
-export function MainTemplate({children}: Props) {
+export function MainTemplate({children}: MianTemplateProps) {
     return (
         <>
             <Container>

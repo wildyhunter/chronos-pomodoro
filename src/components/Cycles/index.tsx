@@ -1,8 +1,8 @@
 import styles from './styles.module.css';
 
-type Props = {};
+type CyclesProps = {};
 
-export function Cycles(props: Props) {
+export function Cycles(props: CyclesProps) {
   return (
     <div className={styles.cycles}>
       <span>Cycles:</span>
