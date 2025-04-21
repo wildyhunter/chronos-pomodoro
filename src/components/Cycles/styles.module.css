@@ -19,14 +19,14 @@
   border-radius: 50%;
 }
 
-.workTime {
+.WorkTime {
   background-color: var(--warning);
 }
 
-.shortBrackTime {
+.ShortBreakTime {
   background-color: var(--primary);
 }
 
-.longBrackTime {
+.LongBreakTime {
   background-color: var(--info);
 }

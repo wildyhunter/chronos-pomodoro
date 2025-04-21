@@ -12,7 +12,7 @@ import { formatSecondsToMinutes } from '../utils/formateSecondsToMinutes';
 import styles from './styles.module.css';
 
 export function MainForm() {
-    const {state, setState } = useContext(TaskContext);
+    const { state, setState } = useContext(TaskContext);
     const taskNameInput = useRef<HTMLInputElement>(null);
     const form = useRef<HTMLFormElement>(null);
     const nextCycle = getNextCycle(state.currentCycle);
@@ -49,7 +49,8 @@ export function MainForm() {
                 activeTask: newTask,
                 currentCycle: nextCycle,
                 secondsRemaining,
-                formattedSecondsRemaining: formatSecondsToMinutes(secondsRemaining),
+                formattedSecondsRemaining:
+                    formatSecondsToMinutes(secondsRemaining),
                 tasks: [...prevState.tasks, newTask],
             };
         });
@@ -75,10 +76,11 @@ export function MainForm() {
             <div className={styles.formBox}>
                 <p>Próximo intervalo é de 25</p>
             </div>
-
-            <div className={styles.formBox}>
-                <Cycles />
-            </div>
+            {state.currentCycle > 0 && (
+                <div className={styles.formBox}>
+                    <Cycles />
+                </div>
+            )}
 
             <div className={styles.formBox}>
                 <DefaultButton icon={<PlayCircleIcon />} />
