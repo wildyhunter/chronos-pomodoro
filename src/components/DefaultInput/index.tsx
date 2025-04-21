@@ -14,7 +14,6 @@ export function DefaultInput({ id, type, labelText, ...rest }: DefaultInputProps
                 className={styles.input}
                 type={type}
                 id={id}
-                placeholder="new task"
                 {...rest}
             />
         </>
