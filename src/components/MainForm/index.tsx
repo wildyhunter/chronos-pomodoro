@@ -8,9 +8,9 @@ import { TaskContext } from '../context/TaskContext/TaskContext';
 import { getNextCycle } from '../utils/getNextCycle';
 import { getNextCycleType } from '../utils/getNextCycleType';
 import { TaskActionTypes } from '../context/TaskContext/taskAction';
+import { Tips } from '../Tips';
 
 import styles from './styles.module.css';
-import { Tips } from '../Tips';
 
 export function MainForm() {
     const { state, dispatch } = useContext(TaskContext);
@@ -21,11 +21,9 @@ export function MainForm() {
 
     function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
+        const taskName = taskNameInput.current?.value.trim();
 
         if (taskNameInput.current === null) return;
-
-        const taskName = taskNameInput.current.value.trim();
-
         if (!taskName) {
             alert('Digite o nome da tarefa');
             return;
@@ -45,18 +43,6 @@ export function MainForm() {
             type: TaskActionTypes.START_TASK,
             payload: newTask,
         });
-
-        const worker = new Worker(
-            new URL('./../../workes/timerWorker.js', import.meta.url)
-        );
-
-        worker.postMessage(
-            'Olá mundo'
-            // duration: newTask.duration,
-            // startDate: newTask.startDate,
-            // type: cycleType,
-);
-
     }
 
     function handleIterruptTask() {
@@ -84,7 +70,7 @@ export function MainForm() {
             </div>
 
             <div className={styles.formBox}>
-                <Tips cycleType={cycleType} />
+                <Tips cycleType={cycleType}/>
             </div>
 
             {state.currentCycle > 0 && (
