@@ -10,6 +10,7 @@ import { getNextCycleType } from '../utils/getNextCycleType';
 import { TaskActionTypes } from '../context/TaskContext/taskAction';
 
 import styles from './styles.module.css';
+import { Tips } from '../Tips';
 
 export function MainForm() {
     const { state, dispatch } = useContext(TaskContext);
@@ -71,8 +72,9 @@ export function MainForm() {
             </div>
 
             <div className={styles.formBox}>
-                <p>Próximo intervalo é de 25</p>
+                <Tips cycleType={cycleType} />
             </div>
+
             {state.currentCycle > 0 && (
                 <div className={styles.formBox}>
                     <Cycles />
