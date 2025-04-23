@@ -45,6 +45,18 @@ export function MainForm() {
             type: TaskActionTypes.START_TASK,
             payload: newTask,
         });
+
+        const worker = new Worker(
+            new URL('./../../workes/timerWorker.js', import.meta.url)
+        );
+
+        worker.postMessage(
+            'Olá mundo'
+            // duration: newTask.duration,
+            // startDate: newTask.startDate,
+            // type: cycleType,
+);
+
     }
 
     function handleIterruptTask() {
