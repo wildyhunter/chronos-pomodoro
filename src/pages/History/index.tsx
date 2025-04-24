@@ -5,6 +5,7 @@ import { Heading } from '../../components/Heading';
 import { MainTemplate } from '../../components/Templates/MainTemplate';
 import { useTaskContext } from '../../context/TaskContext/useTaskContext';
 import {formatDate} from '../../utils/formatDate'
+import { getTaskStatus } from '../../utils/getTaskStatus';
 
 import styles from './styles.module.css';
 
@@ -52,7 +53,7 @@ console.log(state)
                                         <td>
                                             {formatDate(task.startDate)}
                                         </td>
-                                        <td>{task.interruptDate}</td>
+                                        <td>{getTaskStatus(task, state.activeTask)}</td>
                                         <td>{task.type}</td>
                                     </tr>
                                 ))}
