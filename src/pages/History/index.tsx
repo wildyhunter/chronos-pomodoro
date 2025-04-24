@@ -4,14 +4,21 @@ import { DefaultButton } from '../../components/DefaultButton';
 import { Heading } from '../../components/Heading';
 import { MainTemplate } from '../../components/Templates/MainTemplate';
 import { useTaskContext } from '../../context/TaskContext/useTaskContext';
-import {formatDate} from '../../utils/formatDate'
+import { formatDate } from '../../utils/formatDate';
 import { getTaskStatus } from '../../utils/getTaskStatus';
 
 import styles from './styles.module.css';
 
 export function History() {
-    const { state , dispatch } = useTaskContext();
-console.log(state)
+    const { state, dispatch } = useTaskContext();
+
+    const taskType = {
+        WorkTime: 'Em foco.',
+        ShortBreakTime: 'Desncanso curo.',
+        LongBreakTime: 'Descanso longo.',
+    };
+
+    console.log(state);
     return (
         <MainTemplate>
             <Container>
@@ -50,11 +57,13 @@ console.log(state)
                                     <tr key={task.id}>
                                         <td>{task.name}</td>
                                         <td>{task.duration} minutos</td>
+                                        <td>{formatDate(task.startDate)}</td>
                                         <td>
-                                            {formatDate(task.startDate)}
+                                            {getTaskStatus(
+                                                task, state.activeTask
+                                            )}
                                         </td>
-                                        <td>{getTaskStatus(task, state.activeTask)}</td>
-                                        <td>{task.type}</td>
+                                        <td>{taskType[task.type]}</td>
                                     </tr>
                                 ))}
                             </tbody>
