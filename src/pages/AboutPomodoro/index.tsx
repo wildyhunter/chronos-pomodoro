@@ -3,8 +3,6 @@ import { GenericHtml } from '../../components/GenericHtml';
 import { Heading } from '../../components/Heading';
 import { MainTemplate } from '../../components/Templates/MainTemplate';
 
-import styles from './styles.module.css';
-
 export function AboutPomodoro() {
     return (
         <MainTemplate>
