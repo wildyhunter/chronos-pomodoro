@@ -2,10 +2,10 @@ import { useEffect, useReducer, useRef } from 'react';
 import { TaskContext } from './TaskContext';
 import { initialTaskState } from './initialTaskState';
 import { taskReducer } from './taskReducer';
-import { TimerWorkerManager } from '../../../workes/timerWorkerManager';
+import { TimerWorkerManager } from '../../workes/timerWorkerManager';
 import { TaskActionTypes } from './taskAction';
-import { loadBeep } from '../../../utils/LoadBeep';
-import { TaskStateModel } from '../../../models/TaskStateModel';
+import { loadBeep } from '../../utils/LoadBeep';
+import { TaskStateModel } from '../../models/TaskStateModel';
 
 type TaskProviderProps = {
     children: React.ReactNode;
@@ -14,13 +14,13 @@ type TaskProviderProps = {
 export function TaskContextProvider({ children }: TaskProviderProps) {
     const [state, dispatch] = useReducer(taskReducer, initialTaskState, () => {
         const localData = localStorage.getItem('state');
+        console.log(localData);
 
         if (!localData) return initialTaskState;
 
-        const parsedStorageState = JSON.parse(localData) as TaskStateModel;
-
+        const pasedStorageState = JSON.parse(localData) as TaskStateModel;
         return {
-            ...parsedStorageState,
+            ...pasedStorageState,
             activeTask: null,
             secondsRemaining: 0,
             formattedSecondsRemaining: '00:00',
@@ -51,8 +51,6 @@ export function TaskContextProvider({ children }: TaskProviderProps) {
     });
 
     useEffect(() => {
-        localStorage.setItem('state', JSON.stringify(state));
-
         if (!state.activeTask) {
             worker.terminate();
         }

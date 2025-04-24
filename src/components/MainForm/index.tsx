@@ -5,8 +5,8 @@ import { Cycles } from '../Cycles';
 import { useContext, useRef } from 'react';
 import { TaskModel } from '../../models/TaskModel';
 import { TaskContext } from '../context/TaskContext/TaskContext';
-import { getNextCycle } from '../utils/getNextCycle';
-import { getNextCycleType } from '../utils/getNextCycleType';
+import { getNextCycle } from '../../utils/getNextCycle';
+import { getNextCycleType } from '../../utils/getNextCycleType';
 import { TaskActionTypes } from '../context/TaskContext/taskAction';
 import { showMessage } from '../../adapters/showMessage';
 import { Tips } from '../Tips';
@@ -19,6 +19,7 @@ export function MainForm() {
     const form = useRef<HTMLFormElement>(null);
     const nextCycle = getNextCycle(state.currentCycle);
     const cycleType = getNextCycleType(nextCycle);
+    const lastTask = state.tasks[state.tasks.length - 1]?.name || '';
 
     function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -71,11 +72,12 @@ export function MainForm() {
                     placeholder="new task"
                     ref={taskNameInput}
                     disabled={!!state.activeTask}
+                    defaultValue={lastTask}
                 />
             </div>
 
             <div className={styles.formBox}>
-                <Tips cycleType={cycleType}/>
+                <Tips cycleType={cycleType} />
             </div>
 
             {state.currentCycle > 0 && (

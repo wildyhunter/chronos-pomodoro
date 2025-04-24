@@ -21,7 +21,7 @@ export function MainRouter() {
                 <Routes>
                     <Route path="/" element={<Home />}></Route>
                     <Route
-                        path="/about-pomodoro"
+                        path="/about-pomodoro/"
                         element={<AboutPomodoro />}
                     ></Route>
                     <Route path="*" element={<NotFound />}></Route>
