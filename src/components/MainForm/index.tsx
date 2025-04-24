@@ -8,6 +8,7 @@ import { TaskContext } from '../context/TaskContext/TaskContext';
 import { getNextCycle } from '../utils/getNextCycle';
 import { getNextCycleType } from '../utils/getNextCycleType';
 import { TaskActionTypes } from '../context/TaskContext/taskAction';
+import { showMessage } from '../../adapters/showMessage';
 import { Tips } from '../Tips';
 
 import styles from './styles.module.css';
@@ -25,7 +26,7 @@ export function MainForm() {
 
         if (taskNameInput.current === null) return;
         if (!taskName) {
-            alert('Digite o nome da tarefa');
+            showMessage.warn('Digite o nome da tarefa');
             return;
         }
 
@@ -43,12 +44,16 @@ export function MainForm() {
             type: TaskActionTypes.START_TASK,
             payload: newTask,
         });
+
+        showMessage.success(`Tarefa ${taskName} iniciada.`);
     }
 
     function handleIterruptTask() {
         dispatch({
             type: TaskActionTypes.INTERRUPT_TASK,
         });
+
+        showMessage.error(`Tarefa ${state.activeTask?.name} interrompida.`);
     }
 
     return (

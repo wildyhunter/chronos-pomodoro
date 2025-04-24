@@ -3,12 +3,15 @@ import { TaskContextProvider } from './components/context/TaskContext/TaskContex
 
 import './style/Theme.css';
 import './style/Global.css';
+import { MenssageContainer } from './components/menssageContainer';
 
 export function App() {
     return (
         <>
             <TaskContextProvider>
-                <Home />
+                <MenssageContainer>
+                    <Home />
+                </MenssageContainer>
             </TaskContextProvider>
         </>
     );
