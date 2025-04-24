@@ -8,6 +8,7 @@ import {
 import { useState, useEffect } from 'react';
 
 import styles from './styles.module.css';
+import { Link } from 'react-router';
 
 type AvailableThemes = 'dark' | 'light';
 
@@ -40,14 +41,14 @@ export function Menu() {
 
     return (
         <nav className={styles.menu}>
-            <a
-                href=""
+            <Link
+                to="/"
                 className={styles.menuLink}
                 aria-label="Ir para Pagina Home"
                 title="Ir para Pagina Home"
             >
                 <HouseIcon />
-            </a>
+            </Link>
             <a
                 href=""
                 className={styles.menuLink}
