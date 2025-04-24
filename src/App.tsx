@@ -1,4 +1,4 @@
-import { TaskContextProvider } from './components/context/TaskContext/TaskContextProvider';
+import { TaskContextProvider } from './context/TaskContext/TaskContextProvider';
 import { MenssageContainer } from './components/menssageContainer';
 import { MainRouter } from './routers/mainRouter/MainRouter';
 

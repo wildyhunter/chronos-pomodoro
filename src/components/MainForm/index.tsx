@@ -2,19 +2,19 @@ import { PlayCircleIcon, StopCircleIcon } from 'lucide-react';
 import { DefaultButton } from '../DefaultButton';
 import { DefaultInput } from '../DefaultInput';
 import { Cycles } from '../Cycles';
-import { useContext, useRef } from 'react';
+import { useRef } from 'react';
 import { TaskModel } from '../../models/TaskModel';
-import { TaskContext } from '../context/TaskContext/TaskContext';
 import { getNextCycle } from '../../utils/getNextCycle';
 import { getNextCycleType } from '../../utils/getNextCycleType';
-import { TaskActionTypes } from '../context/TaskContext/taskAction';
 import { showMessage } from '../../adapters/showMessage';
 import { Tips } from '../Tips';
+import { useTaskContext } from '../../context/TaskContext/useTaskContext';
+import { TaskActionTypes } from '../../context/TaskContext/taskAction';
 
 import styles from './styles.module.css';
 
 export function MainForm() {
-    const { state, dispatch } = useContext(TaskContext);
+    const { state, dispatch } = useTaskContext()
     const taskNameInput = useRef<HTMLInputElement>(null);
     const form = useRef<HTMLFormElement>(null);
     const nextCycle = getNextCycle(state.currentCycle);

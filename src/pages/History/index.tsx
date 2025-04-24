@@ -3,10 +3,13 @@ import { Container } from '../../components/Container';
 import { DefaultButton } from '../../components/DefaultButton';
 import { Heading } from '../../components/Heading';
 import { MainTemplate } from '../../components/Templates/MainTemplate';
+import { useTaskContext } from '../../context/TaskContext/useTaskContext';
 
 import styles from './styles.module.css';
 
 export function History() {
+    const { state , dispatch } = useTaskContext();
+console.log(state)
     return (
         <MainTemplate>
             <Container>
@@ -24,30 +27,40 @@ export function History() {
             </Container>
 
             <Container>
-                <div className={styles.responsiveTable}>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Tarefa</th>
-                                <th>Duração</th>
-                                <th>Data</th>
-                                <th>Status</th>
-                                <th>Tipo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                          {Array.from({ length: 10 }).map((_, index) => (
-                            <tr key={index}>
-                                <td>Estudar</td>
-                                <td>25 min</td>
-                                <td>20/04/2025 08:00</td>
-                                <td>completa</td>
-                                <td>Foco</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                    </table>
-                </div>
+                {state.tasks.length <= 0 ? (
+                    <p className={styles.noTasks}>
+                        Voce ainda nao tem nada no historico
+                    </p>
+                ) : (
+                    <div className={styles.responsiveTable}>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Tarefa</th>
+                                    <th>Duração</th>
+                                    <th>Data</th>
+                                    <th>Status</th>
+                                    <th>Tipo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {state.tasks.map((task) => (
+                                    <tr key={task.id}>
+                                        <td>{task.name}</td>
+                                        <td>{task.duration} minutos</td>
+                                        <td>
+                                            {new Date(
+                                                task.startDate
+                                            ).toLocaleDateString()}
+                                        </td>
+                                        <td>{task.interruptDate}</td>
+                                        <td>{task.type}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
             </Container>
         </MainTemplate>
     );

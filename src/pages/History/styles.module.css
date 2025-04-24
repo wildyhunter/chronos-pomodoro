@@ -8,6 +8,10 @@
     width: 2rem;
     height: 2rem;
 }
+.noTasks {
+    font-size: 2.4rem;
+    max-width: 32rem;
+}
 
 .responsiveTable {
     overflow-x: auto;

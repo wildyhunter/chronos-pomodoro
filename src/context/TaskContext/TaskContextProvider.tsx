@@ -13,18 +13,17 @@ type TaskProviderProps = {
 
 export function TaskContextProvider({ children }: TaskProviderProps) {
     const [state, dispatch] = useReducer(taskReducer, initialTaskState, () => {
-        const localData = localStorage.getItem('state');
-        console.log(localData);
-
-        if (!localData) return initialTaskState;
-
-        const pasedStorageState = JSON.parse(localData) as TaskStateModel;
-        return {
-            ...pasedStorageState,
-            activeTask: null,
-            secondsRemaining: 0,
-            formattedSecondsRemaining: '00:00',
-        };
+        let stateStorage = localStorage.getItem('state');
+        if (stateStorage) {
+            const state = JSON.parse(stateStorage) as TaskStateModel;
+            return {
+                ...state,
+                activeTask: null,
+                secondsRemaining: 0,
+                formattedSecondsRemaining: '00:00',
+            };
+        }
+        return initialTaskState;
     });
 
     let playBeepRef = useRef<ReturnType<typeof loadBeep> | null>(null);
@@ -51,6 +50,8 @@ export function TaskContextProvider({ children }: TaskProviderProps) {
     });
 
     useEffect(() => {
+        localStorage.setItem('state', JSON.stringify(state));
+
         if (!state.activeTask) {
             worker.terminate();
         }
@@ -58,7 +59,7 @@ export function TaskContextProvider({ children }: TaskProviderProps) {
         document.title = `${state.formattedSecondsRemaining} - Chronos Pomodoro`;
 
         worker.postMessage(state);
-    }, [state, worker]);
+    }, [worker, state]);
 
     useEffect(() => {
         if (state.activeTask && playBeepRef.current === null) {
@@ -67,6 +68,7 @@ export function TaskContextProvider({ children }: TaskProviderProps) {
             playBeepRef.current = null;
         }
     }, [state.activeTask]);
+
     return (
         <TaskContext.Provider value={{ state, dispatch }}>
             {children}
