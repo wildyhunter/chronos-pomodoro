@@ -4,6 +4,7 @@ import { DefaultButton } from '../../components/DefaultButton';
 import { Heading } from '../../components/Heading';
 import { MainTemplate } from '../../components/Templates/MainTemplate';
 import { useTaskContext } from '../../context/TaskContext/useTaskContext';
+import {formatDate} from '../../utils/formatDate'
 
 import styles from './styles.module.css';
 
@@ -49,9 +50,7 @@ console.log(state)
                                         <td>{task.name}</td>
                                         <td>{task.duration} minutos</td>
                                         <td>
-                                            {new Date(
-                                                task.startDate
-                                            ).toLocaleDateString()}
+                                            {formatDate(task.startDate)}
                                         </td>
                                         <td>{task.interruptDate}</td>
                                         <td>{task.type}</td>
