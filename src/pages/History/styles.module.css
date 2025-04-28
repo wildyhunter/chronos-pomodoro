@@ -27,6 +27,7 @@
 
 .responsiveTable th {
     background-color: var(--gray-600);
+    cursor: pointer;
 }
 
 .responsiveTable td {
