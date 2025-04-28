@@ -9,8 +9,9 @@
     height: 2rem;
 }
 .noTasks {
-    font-size: 2.4rem;
+    font-size: 1.8rem;
     max-width: 32rem;
+    text-align: center;
 }
 
 .responsiveTable {

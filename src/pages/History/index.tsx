@@ -7,12 +7,13 @@ import { useTaskContext } from '../../context/TaskContext/useTaskContext';
 import { formatDate } from '../../utils/formatDate';
 import { getTaskStatus } from '../../utils/getTaskStatus';
 import { SortTasksOptions, sortTasks } from '../../utils/sortTask';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { TaskActionTypes } from '../../context/TaskContext/taskAction';
 
 import styles from './styles.module.css';
 
 export function History() {
-    const { state } = useTaskContext();
+    const { state, dispatch } = useTaskContext();
     const [sortedTasksOptions, setSortedTasksOptions] =
         useState<SortTasksOptions>(() => {
             return {
@@ -21,6 +22,17 @@ export function History() {
                 direction: 'desc',
             };
         });
+
+    useEffect(() => {
+        setSortedTasksOptions((prevState) => ({
+            ...prevState,
+            tasks: sortTasks({
+                tasks: prevState.tasks,
+                field: prevState.field,
+                direction: prevState.direction,
+            }),
+        }));
+    }, [state.tasks]);
 
     function handleSortTasks({ field }: Pick<SortTasksOptions, 'field'>) {
         const newdirection =
@@ -34,6 +46,12 @@ export function History() {
             field,
             direction: newdirection,
         });
+    }
+
+    function handelResetHistory() {
+        if (!confirm('Tem certeza que deseja limpar o histórico?')) return;
+        dispatch({ type: TaskActionTypes.RESET_STATE });
+        window.location.reload();
     }
 
     const taskType = {
@@ -54,6 +72,7 @@ export function History() {
                             color="red"
                             area-label="Limpar histórico"
                             title="Limpar histórico"
+                            onClick={handelResetHistory}
                         />
                     </span>
                 </Heading>
@@ -69,9 +88,31 @@ export function History() {
                         <table>
                             <thead>
                                 <tr>
-                                    <th onClick={() => handleSortTasks({ field: 'name' })}>Tarefa</th>
-                                    <th onClick={() => handleSortTasks({ field: 'duration' })}>Duração</th>
-                                    <th onClick={() => handleSortTasks({ field: 'startDate' })}>Data</th>
+                                    <th
+                                        onClick={() =>
+                                            handleSortTasks({ field: 'name' })
+                                        }
+                                    >
+                                        Tarefa
+                                    </th>
+                                    <th
+                                        onClick={() =>
+                                            handleSortTasks({
+                                                field: 'duration',
+                                            })
+                                        }
+                                    >
+                                        Duração
+                                    </th>
+                                    <th
+                                        onClick={() =>
+                                            handleSortTasks({
+                                                field: 'startDate',
+                                            })
+                                        }
+                                    >
+                                        Data
+                                    </th>
                                     <th>Status</th>
                                     <th>Tipo</th>
                                 </tr>
