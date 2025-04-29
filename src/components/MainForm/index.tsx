@@ -12,17 +12,20 @@ import { useTaskContext } from '../../context/TaskContext/useTaskContext';
 import { TaskActionTypes } from '../../context/TaskContext/taskAction';
 
 import styles from './styles.module.css';
+import { toast } from 'react-toastify';
 
 export function MainForm() {
-    const { state, dispatch } = useTaskContext()
+    const { state, dispatch } = useTaskContext();
     const taskNameInput = useRef<HTMLInputElement>(null);
     const form = useRef<HTMLFormElement>(null);
     const nextCycle = getNextCycle(state.currentCycle);
     const cycleType = getNextCycleType(nextCycle);
     const lastTask = state.tasks[state.tasks.length - 1]?.name || '';
-
+    
     function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
+        toast.dismiss();
         event.preventDefault();
+
         const taskName = taskNameInput.current?.value.trim();
 
         if (taskNameInput.current === null) return;
@@ -50,6 +53,7 @@ export function MainForm() {
     }
 
     function handleIterruptTask() {
+        toast.dismiss();
         dispatch({
             type: TaskActionTypes.INTERRUPT_TASK,
         });

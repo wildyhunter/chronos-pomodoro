@@ -62,6 +62,10 @@ export function taskReducer(state: TaskStateModel, action: TaskActionModel) {
             return {...initialTaskState};
         }
 
+        case TaskActionTypes.CHANGE_SETTIGNS: {
+            return {...state, config: {...action.payload}};
+        }
+
         case TaskActionTypes.COUNT_DOWN: {
             const secondsRemaining = action.payload.secondsRemaining;
             const formattedSecondsRemaining =

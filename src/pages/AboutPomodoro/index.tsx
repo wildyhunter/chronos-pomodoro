@@ -1,3 +1,4 @@
+import { use, useEffect } from 'react';
 import { Container } from '../../components/Container';
 import { GenericHtml } from '../../components/GenericHtml';
 import { Heading } from '../../components/Heading';
@@ -5,6 +6,10 @@ import { RouterLink } from '../../components/RouterLink';
 import { MainTemplate } from '../../components/Templates/MainTemplate';
 
 export function AboutPomodoro() {
+    useEffect(() => {
+        document.title = 'A técnica Pomodoro | Entenda como funciona a técnica pomodoro'
+    }, [])
+    
     return (
         <MainTemplate>
             <Container>
