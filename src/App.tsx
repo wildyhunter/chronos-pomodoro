@@ -2,8 +2,8 @@ import { TaskContextProvider } from './context/TaskContext/TaskContextProvider';
 import { MenssageContainer } from './components/menssageContainer';
 import { MainRouter } from './routers/mainRouter/MainRouter';
 
-import './style/Theme.css';
-import './style/Global.css';
+import './style/theme.css';
+import './style/global.css';
 
 export function App() {
     return (
