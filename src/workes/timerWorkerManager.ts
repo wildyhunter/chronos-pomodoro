@@ -20,7 +20,7 @@ export class TimerWorkerManager {
         this.worker.postMessage(message);
     }
 
-    onmessege(callback: (message: MessageEvent<any>) => void) {
+    onmessege(callback: (message: MessageEvent) => void) {
         this.worker.onmessage = callback;
     }
 

@@ -13,7 +13,7 @@ type TaskProviderProps = {
 
 export function TaskContextProvider({ children }: TaskProviderProps) {
     const [state, dispatch] = useReducer(taskReducer, initialTaskState, () => {
-        let stateStorage = localStorage.getItem('state');
+        const stateStorage = localStorage.getItem('state');
         if (stateStorage) {
             const state = JSON.parse(stateStorage) as TaskStateModel;
             return {
@@ -26,7 +26,7 @@ export function TaskContextProvider({ children }: TaskProviderProps) {
         return initialTaskState;
     });
 
-    let playBeepRef = useRef<ReturnType<typeof loadBeep> | null>(null);
+    const playBeepRef = useRef<ReturnType<typeof loadBeep> | null>(null);
 
     const worker = TimerWorkerManager.getInstance();
 

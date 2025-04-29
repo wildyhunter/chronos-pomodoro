@@ -31,14 +31,17 @@ export function Settings() {
 
         if (workTime < 1 || workTime > 99) {
             showMessage.error('O tempo de foco deve ser entre 1 e 99 minutos');
+            return;
         }
         if (shortBreakTime < 1 || shortBreakTime > 30) {
             showMessage.error(
                 'O tempo de descanso curto deve ser entre 1 e 30 minutos'
             );
+            return;
         }
         if (longBreakTime < 1 || longBreakTime > 60) {
             showMessage.error('O descanso longo deve ser entre 1 e 60 minutos');
+            return;
         }
 
         dispatch({
@@ -73,7 +76,7 @@ export function Settings() {
                 <form
                     action=""
                     className={styles.form}
-                    onClick={handleSaveSettings}
+                    onSubmit={handleSaveSettings}
                 >
                     <div className={styles.formBox}>
                         <DefaultInput
